@@ -26,7 +26,7 @@ public:
   //--------- Constructors --------//
 
   /// size constructor
-  UndirectedGraph( size_type const V );
+  UndirectedGraph( size_type const size );
 
   /// input stream constructor
   UndirectedGraph( std::istream in );
@@ -54,6 +54,6 @@ public:
 
 private:
 
-  std::vector<AdjacencyList> adjacencyLists;
+  std::vector<AdjacencyList> _adjacencies;
 
 };
