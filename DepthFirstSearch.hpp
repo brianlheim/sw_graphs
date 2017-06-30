@@ -1,0 +1,48 @@
+/** \file DepthFirstSearch.hpp
+  * Implements depth-first search on a graph.
+  *
+  * \author Brian Heim
+  * \date   2017-06-30
+  */
+
+#pragma once
+
+#include <UndirectedGraph.hpp>
+
+#include <vector>
+#include <stack>
+
+template<class G, class V_ID> class DepthFirstSearch
+{
+public:
+
+  /// Find vertices connected to source vertex `s`
+  DepthFirstSearch( G g, V_ID s ) :
+    _marks(g.size(), false),
+    _count(0)
+  {
+    std::stack<V_ID> to_search;
+    to_search.push( s );
+
+    while ( !to_search.empty() ) {
+      const V_ID id = to_search.top();
+      to_search.pop();
+      _marks[id] = true;
+      for ( auto const adj_id : g.verticesAdjacentTo(id) )
+        if ( !_marks[adj_id] )
+          to_search.push( adj_id );
+    }
+  }
+
+  /// Is `v` connected to the source vertex?
+  bool marked( V_ID v ) const { return _marks[v]; }
+
+  /// How many vertices are connected to the source?
+  size_t count() const { return _count; }
+
+private:
+
+  std::vector<bool> _marks;
+  size_t _count;
+
+};
