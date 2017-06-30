@@ -40,11 +40,12 @@ public:
   size_type e() const;
 
   /// Vertices adjacent to the given vertex
-  AdjacencyList verticesAdjacentTo( VertexID const v ) const;
+  AdjacencyList const& verticesAdjacentTo( VertexID const v ) const;
 
   //--------- Mutators ---------//
 
-  /// Creates an edge between the two named vertices
+  /// Creates an edge between the two named vertices.
+  /// It is possible to add the same edge twice.
   void addEdge( VertexID const v, VertexID const w );
 
   //--------- Description ---------//
