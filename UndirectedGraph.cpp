@@ -45,7 +45,7 @@ UndirectedGraph::size_type UndirectedGraph::e() const
   size_type e = 0;
   for ( auto const& adjacency_list : _adjacencies )
     e += adjacency_list.size();
-  return e;
+  return e / 2;
 }
 
 UndirectedGraph::AdjacencyList const& UndirectedGraph::verticesAdjacentTo( VertexID const v ) const
