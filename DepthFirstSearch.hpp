@@ -27,7 +27,13 @@ public:
     while ( !to_search.empty() ) {
       const V_ID id = to_search.top();
       to_search.pop();
+
+      // maintain invariants: we've visited _count vertices, and each
+      // has been marked as visited.
+      ++_count;
       _marks[id] = true;
+
+      // visit all the unvisited neighbors of the current vertex
       for ( auto const adj_id : g.verticesAdjacentTo(id) )
         if ( !_marks[adj_id] )
           to_search.push( adj_id );
@@ -43,6 +49,7 @@ public:
 private:
 
   std::vector<bool> _marks;
+
   size_t _count;
 
 };
