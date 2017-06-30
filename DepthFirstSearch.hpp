@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <UndirectedGraph.hpp>
+#include "UndirectedGraph.hpp"
 
 #include <vector>
 #include <stack>
@@ -18,7 +18,7 @@ public:
 
   /// Find vertices connected to source vertex `s`
   DepthFirstSearch( G g, V_ID s ) :
-    _marks(g.size(), false),
+    _marks(g.v(), false),
     _count(0)
   {
     std::stack<V_ID> to_search;
