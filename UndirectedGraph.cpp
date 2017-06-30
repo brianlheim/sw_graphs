@@ -70,6 +70,7 @@ string UndirectedGraph::toString() const
     for ( auto const& vertex : verticesAdjacentTo(i) ) {
       ss << ' ' << vertex;
     }
+    ss << '\n';
   }
 
   return ss.str();
