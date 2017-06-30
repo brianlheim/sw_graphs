@@ -22,7 +22,7 @@ using std::string;
 
 UndirectedGraph::UndirectedGraph( size_type const size ) : _adjacencies(size) { }
 
-UndirectedGraph::UndirectedGraph( istream in ) : _adjacencies()
+UndirectedGraph::UndirectedGraph( istream & in ) : _adjacencies()
 {
   size_type vertex_count, edge_count;
   in >> vertex_count >> edge_count;

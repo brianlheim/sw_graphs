@@ -29,7 +29,7 @@ public:
   UndirectedGraph( size_type const size );
 
   /// input stream constructor
-  UndirectedGraph( std::istream in );
+  UndirectedGraph( std::istream & in );
 
   //--------- Accessors ---------//
 
