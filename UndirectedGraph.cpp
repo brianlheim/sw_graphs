@@ -14,6 +14,8 @@
 #include <ios> // streamsize
 #include <cmath> // log10
 
+#include <iostream> // debugging
+
 using std::ostringstream;
 using std::istream;
 using std::vector;
@@ -71,6 +73,26 @@ string UndirectedGraph::toString() const
       ss << ' ' << vertex;
     }
     ss << '\n';
+  }
+
+  return ss.str();
+}
+
+string UndirectedGraph::toInputString() const
+{
+  ostringstream ss;
+  ss << v() << '\n' << e() << '\n';
+  for ( size_type i = 0; i < v(); ++i ) {
+    bool seen_self_loop = false;
+    for ( auto const& vertex : verticesAdjacentTo(i) ) {
+      if ( vertex == i ) {
+        if ( seen_self_loop )
+          ss << i << ' ' << vertex << '\n';
+        seen_self_loop = !seen_self_loop;
+      } else if ( vertex > i ) {
+        ss << i << ' ' << vertex << '\n';
+      }
+    }
   }
 
   return ss.str();

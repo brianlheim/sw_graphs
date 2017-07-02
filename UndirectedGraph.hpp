@@ -53,6 +53,9 @@ public:
   /// Returns the graph as a string
   std::string toString() const;
 
+  /// Returns the graph as a string that can be read by the constructor
+  std::string toInputString() const;
+
 private:
 
   std::vector<AdjacencyList> _adjacencies;
