@@ -2,6 +2,9 @@
 cmake_minimum_required (VERSION 3.0)
 project (Graphs)
 
+# compiler config
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1z -Wpedantic -Wall -Werror")
+
 # include the ./include directory
 include_directories ("$(PROJECT_SOURCE_DIR)/include")
 
