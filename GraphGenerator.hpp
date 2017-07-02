@@ -38,7 +38,7 @@ public:
   void addEdges( size_type num_edges )
   {
     // protect against infinite loop if the graph is fully connected
-    size_type max_edges = (_graph.v() * (_graph.v()+1)) / 2;
+    size_type max_edges = (_graph.v() * (_graph.v()-1)) / 2;
     if ( max_edges < num_edges + _graph.e() )
       throw std::domain_error(
           std::string("Graph would be fully connected with ") +
