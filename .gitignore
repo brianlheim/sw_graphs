@@ -1,2 +1,5 @@
 # exclude CMake build folder
 build
+
+# exclude binaries
+bin
