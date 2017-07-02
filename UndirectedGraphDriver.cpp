@@ -19,6 +19,6 @@ int main()
 
   UndirectedGraph ug = UndirectedGraph( cin );
 
-  cout << ug.toString();
+  cout << ug;
   return 0;
 }

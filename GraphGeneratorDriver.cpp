@@ -34,5 +34,5 @@ int main( int argc, char **argv )
   e = (UndirectedGraph::size_type)e_long;
 
   GraphGenerator<UndirectedGraph> gen( v, e );
-  cout << gen.getGraph().toString() << endl;
+  cout << gen.getGraph().toInputString() << endl;
 }
