@@ -11,6 +11,7 @@
 #include <cstddef> // size_t
 #include <istream> // istream
 #include <vector> // vector
+#include <ostream> // ostream
 
 /// Basic undirected graph.
 class UndirectedGraph
@@ -61,3 +62,10 @@ private:
   std::vector<AdjacencyList> _adjacencies;
 
 };
+
+/// Output stream operator
+inline std::ostream& operator<<( std::ostream& os, UndirectedGraph const& graph )
+{
+  os << graph.toString();
+  return os;
+}
