@@ -12,8 +12,8 @@ include_directories ("${PROJECT_SOURCE_DIR}/include")
 add_library (UndirectedGraph UndirectedGraph.cpp)
 
 # executable for graph generator
-add_executable (graph_generator GraphGeneratorDriver.cpp)
-target_link_libraries (graph_generator UndirectedGraph)
+add_executable (graph_gen GraphGeneratorDriver.cpp)
+target_link_libraries (graph_gen UndirectedGraph)
 
 # executable for undir graph driver
 add_executable (undir_graph UndirectedGraphDriver.cpp)
