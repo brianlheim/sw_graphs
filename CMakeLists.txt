@@ -24,4 +24,4 @@ add_executable (dfs DepthFirstSearchDriver.cpp)
 target_link_libraries (dfs UndirectedGraph)
 
 # install files
-install (TARGETS graph_generator undir_graph dfs DESTINATION "${PROJECT_SOURCE_DIR}/bin")
+install (TARGETS graph_gen undir_graph dfs DESTINATION "${PROJECT_SOURCE_DIR}/bin")
