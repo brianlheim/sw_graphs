@@ -62,8 +62,8 @@ void UndirectedGraph::addEdge( VertexID const v, VertexID const w )
 string UndirectedGraph::toString() const
 {
   ostringstream ss;
-  ss << v() << '\n' << e() << '\n';
-  streamsize vertex_field_width = (int) std::log10(v());
+  // ss << v() << '\n' << e() << '\n';
+  streamsize vertex_field_width = (int)std::ceil(std::log10(v()));
   for ( size_type i = 0; i < v(); ++i ) {
     ss.width( vertex_field_width );
     ss << i << " |";
