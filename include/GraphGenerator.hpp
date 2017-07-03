@@ -41,12 +41,10 @@ public:
   /// Add `num_edges` edges to the graph; throws a domain_error if too many edges are requested.
   void addEdges( size_type num_edges )
   {
-    // protect against infinite loop if the graph is fully connected
-    size_type max_edges = (_graph.v() * (_graph.v()-1)) / 2;
-    if ( max_edges < num_edges + _graph.e() )
+    if ( !canAddEdges(num_edges) )
       throw std::domain_error(
           std::string("Graph would be fully connected with ") +
-          std::to_string(max_edges) +
+          std::to_string(maxEdges()) +
           " edges, but " +
           std::to_string(num_edges+_graph.e()) +
           " were requested."
@@ -69,6 +67,20 @@ public:
   void allowSelfLoops( bool const allow ) { _allow_self_loops = allow; }
 
 protected:
+
+  /// `true` if we can add `num_edges` more edges to the graph
+  bool canAddEdges( size_type num_edges ) const
+  {
+    return _allow_duplicate_edges || ( maxEdges() < num_edges + _graph.e() );
+  }
+
+  /// Returns the maximum number of edges this graph can contain
+  size_type maxEdges() const
+  {
+    size_type const max_edges_between_two_vertices = (_graph.v() * (_graph.v()-1)) / 2;
+    size_type const max_self_loops = _allow_self_loops ? _graph.v() : 0;
+    return max_edges_between_two_vertices + max_self_loops;
+  }
 
   void addEdge()
   {
