@@ -19,6 +19,7 @@ public:
   typedef typename G::size_type size_type;
 
   /// Creates an unconnected graph with `size` vertices.
+  /// Duplicate and self-loop edges are turned off.
   GraphGenerator( size_type size ) :
     _graph(size),
     _engine(),
@@ -28,6 +29,7 @@ public:
   { }
 
   /// Constructs a graph with `size` vertices and `num_edges` edges.
+  /// Duplicate and self-loop edges are turned off.
   GraphGenerator( size_type size, size_type num_edges ) :
     _graph(size),
     _engine(),
@@ -58,13 +60,13 @@ public:
 
   // Configuration features
 
-  bool allowingDuplicateEdges() const { return _allow_duplicate_edges; }
+  bool allowingDuplicateEdges() const          { return _allow_duplicate_edges; }
 
-  bool allowingSelfLoops() const { return _allow_self_loops; }
+  bool allowingSelfLoops() const               { return _allow_self_loops; }
 
   void allowDuplicateEdges( bool const allow ) { _allow_duplicate_edges = allow; }
 
-  void allowSelfLoops( bool const allow ) { _allow_self_loops = allow; }
+  void allowSelfLoops( bool const allow )      { _allow_self_loops = allow; }
 
 protected:
 
