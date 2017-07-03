@@ -1,5 +1,5 @@
 /** \file ALUGraph.hpp
- * Undirected graph implementation.
+ * Undirected graph implementation using adjacency list.
  * Based on Sedgewick and Wayne, 4th ed.
  *
  * \author Brian Heim
@@ -8,46 +8,51 @@
 
 #pragma once
 
+#include "AbstractUGraph.hpp"
+
 #include <cstddef> // size_t
 #include <istream> // istream
 #include <vector> // vector
 #include <ostream> // ostream
 
-/// Basic undirected graph.
-class UndirectedGraph
+/// Basic undirected graph using an adjacency list.
+class ALUGraph : AbstractUGraph
 {
 public:
-  //--------- Types ----------//
-
-  /// vertex ID type
-  typedef size_t VertexID;
-  typedef size_t size_type;
-  typedef std::vector<VertexID> AdjacencyList;
-
   //--------- Constructors --------//
 
   /// size constructor
-  UndirectedGraph( size_type const size );
+  ALUGraph( size_type const size ) : _adjacencies(size) { }
 
   /// input stream constructor
-  UndirectedGraph( std::istream & in );
+  ALUGraph( std::istream & in );
 
   //--------- Accessors ---------//
 
   /// Number of vertices
-  size_type v() const;
+  size_type v() const { return _adjacencies.size(); }
 
   /// Number of edges
-  size_type e() const;
+  size_type e() const
+  {
+    size_type e = 0;
+    for ( auto const& adjacency_list : _adjacencies )
+      e += adjacency_list.size();
+    return e / 2;
+  }
 
   /// Vertices adjacent to the given vertex
-  AdjacencyList const& verticesAdjacentTo( VertexID const v ) const;
+  AdjacencyList verticesAdjacentTo( VertexID const v ) const { return _adjacencies[v]; }
 
   //--------- Mutators ---------//
 
   /// Creates an edge between the two named vertices.
   /// It is possible to add the same edge twice.
-  void addEdge( VertexID const v, VertexID const w );
+  void addEdge( VertexID const v, VertexID const w )
+  {
+    _adjacencies[v].push_back( w );
+    _adjacencies[w].push_back( v );
+  }
 
   //--------- Description ---------//
 
@@ -64,7 +69,7 @@ private:
 };
 
 /// Output stream operator
-inline std::ostream& operator<<( std::ostream& os, UndirectedGraph const& graph )
+inline std::ostream& operator<<( std::ostream& os, ALUGraph const& graph )
 {
   os << graph.toString();
   return os;

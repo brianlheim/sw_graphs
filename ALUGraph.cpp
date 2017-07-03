@@ -22,9 +22,7 @@ using std::vector;
 using std::streamsize;
 using std::string;
 
-UndirectedGraph::UndirectedGraph( size_type const size ) : _adjacencies(size) { }
-
-UndirectedGraph::UndirectedGraph( istream & in ) : _adjacencies()
+ALUGraph::ALUGraph( istream & in ) : _adjacencies()
 {
   size_type vertex_count, edge_count;
   in >> vertex_count >> edge_count;
@@ -37,31 +35,8 @@ UndirectedGraph::UndirectedGraph( istream & in ) : _adjacencies()
   }
 }
 
-UndirectedGraph::size_type UndirectedGraph::v() const
-{
-  return _adjacencies.size();
-}
-
-UndirectedGraph::size_type UndirectedGraph::e() const
-{
-  size_type e = 0;
-  for ( auto const& adjacency_list : _adjacencies )
-    e += adjacency_list.size();
-  return e / 2;
-}
-
-UndirectedGraph::AdjacencyList const& UndirectedGraph::verticesAdjacentTo( VertexID const v ) const
-{
-  return _adjacencies[v];
-}
-
-void UndirectedGraph::addEdge( VertexID const v, VertexID const w )
-{
-  _adjacencies[v].push_back( w );
-  _adjacencies[w].push_back( v );
-}
-
-string UndirectedGraph::toString() const
+/// TODO: don't print self-loops twice
+string ALUGraph::toString() const
 {
   ostringstream ss;
   // ss << v() << '\n' << e() << '\n';
@@ -78,7 +53,7 @@ string UndirectedGraph::toString() const
   return ss.str();
 }
 
-string UndirectedGraph::toInputString() const
+string ALUGraph::toInputString() const
 {
   ostringstream ss;
   ss << v() << '\n' << e() << '\n';

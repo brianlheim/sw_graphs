@@ -5,6 +5,8 @@
  * \date   2017-06-30
  */
 
+#include "AbstractUGraph.hpp"
+#include "AMUGraph.hpp"
 #include "ALUGraph.hpp"
 #include <iostream>
 
@@ -17,7 +19,7 @@ int main()
   cout << "Driver for undirected graph" << endl;
   cout << "Enter the graph:" << endl;
 
-  UndirectedGraph ug = UndirectedGraph( cin );
+  ALUGraph ug = ALUGraph( cin );
 
   cout << ug;
   return 0;
