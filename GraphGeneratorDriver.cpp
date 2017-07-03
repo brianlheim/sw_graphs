@@ -6,6 +6,7 @@
  */
 
 #include "GraphGenerator.hpp"
+#include "AbstractUGraph.hpp"
 #include "ALUGraph.hpp"
 
 #include <iostream>
@@ -29,10 +30,10 @@ int main( int argc, char **argv )
     return 2;
   }
 
-  UndirectedGraph::size_type v, e;
-  v = (UndirectedGraph::size_type)v_long;
-  e = (UndirectedGraph::size_type)e_long;
+  ALUGraph::size_type v, e;
+  v = (ALUGraph::size_type)v_long;
+  e = (ALUGraph::size_type)e_long;
 
-  GraphGenerator<UndirectedGraph> gen( v, e );
+  GraphGenerator<ALUGraph> gen( v, e );
   cout << gen.getGraph().toInputString();
 }
