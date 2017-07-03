@@ -1,4 +1,4 @@
-/** \file UndirectedGraphDriver.cpp
+/** \file UGraphDriver.cpp
  * Driver for UndirectedGraph
  *
  * \author Brian Heim

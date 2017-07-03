@@ -1,4 +1,4 @@
-/** \file   UndirectedGraph.cpp
+/** \file ALUGraph.cpp
  * Undirected graph implementation.
  * Based on Sedgewick and Wayne, 4th ed.
  *
