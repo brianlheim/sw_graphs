@@ -8,19 +8,38 @@
 #include "AbstractUGraph.hpp"
 #include "AMUGraph.hpp"
 #include "ALUGraph.hpp"
-#include <iostream>
 
+#include <iostream>
+#include <string>
+
+using std::string;
 using std::cin;
 using std::cout;
 using std::endl;
 
-int main()
+AbstractUGraph * create_graph( string opt )
 {
-  cout << "Driver for undirected graph" << endl;
-  cout << "Enter the graph:" << endl;
+  if ( opt == "-m" )
+    return new AMUGraph( cin );
+  else if ( opt == "-l" )
+    return new ALUGraph( cin );
+  else
+    throw std::runtime_error( "Unknown argument: " + opt );
+}
 
-  ALUGraph ug = ALUGraph( cin );
+int main(int argc, char **argv)
+{
+  string opt;
 
-  cout << ug;
+  // default is to use an adjacency list
+  if ( argc == 1 )
+    opt = "-m";
+  else
+    opt = *++argv;
+
+  cout << "Undirected graph creation driver. Enter your graph: " << endl;
+  AbstractUGraph * ug = create_graph( opt );
+
+  cout << ug->toString();
   return 0;
 }
