@@ -78,7 +78,8 @@ protected:
   size_type maxEdges() const
   {
     size_type const max_edges_between_two_vertices = (_graph.v() * (_graph.v()-1)) / 2;
-    size_type const max_self_loops = _allow_self_loops ? _graph.v() : 0;
+    size_type const max_self_loops                 = _allow_self_loops ? _graph.v() : 0;
+
     return max_edges_between_two_vertices + max_self_loops;
   }
 
@@ -104,11 +105,11 @@ protected:
   }
 
 private:
-  G _graph; ///< The graph
-  std::mt19937_64 _engine; ///< Random engine
-  int_gen_t _generator; ///< Uniform int distribution
+  G _graph;                    ///< The graph
+  std::mt19937_64 _engine;     ///< Random engine
+  int_gen_t _generator;        ///< Uniform int distribution
 
   bool _allow_duplicate_edges; ///< Whether or not to allow duplicate edges
-  bool _allow_self_loops; ///< Whether or not to allow self loops
+  bool _allow_self_loops;      ///< Whether or not to allow self loops
 };
 
