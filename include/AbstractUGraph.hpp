@@ -63,16 +63,9 @@ public:
     for ( size_type i = 0; i < v(); ++i ) {
       ss.width( vertex_field_width );
       ss << i << " |";
-      bool seen_self_loop = false;
-      for ( auto const& vertex : verticesAdjacentTo(i) ) {
-        if ( vertex == i ) {
-          if ( seen_self_loop )
-            ss << ' ' << vertex;
-          seen_self_loop = !seen_self_loop;
-        } else {
-          ss << ' ' << vertex;
-        }
-      }
+      for ( auto const& vertex : verticesAdjacentTo(i) )
+        ss << ' ' << vertex;
+
       ss << '\n';
     }
 
@@ -84,18 +77,10 @@ public:
   {
     std::ostringstream ss;
     ss << v() << '\n' << e() << '\n';
-    for ( size_type i = 0; i < v(); ++i ) {
-      bool seen_self_loop = false;
-      for ( auto const& vertex : verticesAdjacentTo(i) ) {
-        if ( vertex == i ) {
-          if ( seen_self_loop )
-            ss << i << ' ' << vertex << '\n';
-          seen_self_loop = !seen_self_loop;
-        } else if ( vertex > i ) {
+    for ( size_type i = 0; i < v(); ++i )
+      for ( auto const& vertex : verticesAdjacentTo(i) )
+        if ( vertex >= i )
           ss << i << ' ' << vertex << '\n';
-        }
-      }
-    }
 
     return ss.str();
   }
