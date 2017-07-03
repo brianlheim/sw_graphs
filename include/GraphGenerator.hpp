@@ -22,14 +22,18 @@ public:
   GraphGenerator( size_type size ) :
     _graph(size),
     _engine(),
-    _generator(0, size-1)
+    _generator(0, size-1),
+    _allow_duplicate_edges(false),
+    _allow_self_loops(false)
   { }
 
   /// Constructs a graph with `size` vertices and `num_edges` edges.
   GraphGenerator( size_type size, size_type num_edges ) :
     _graph(size),
     _engine(),
-    _generator(0, size-1)
+    _generator(0, size-1),
+    _allow_duplicate_edges(false),
+    _allow_self_loops(false)
   {
     addEdges( num_edges );
   }
@@ -53,6 +57,16 @@ public:
   }
 
   G const& getGraph() { return _graph; }
+
+  // Configuration features
+
+  bool allowingDuplicateEdges() const { return _allow_duplicate_edges; }
+
+  bool allowingSelfLoops() const { return _allow_self_loops; }
+
+  void allowDuplicateEdges( bool const allow ) { _allow_duplicate_edges = allow; }
+
+  void allowSelfLoops( bool const allow ) { _allow_self_loops = allow; }
 
 protected:
 
@@ -81,5 +95,8 @@ private:
   G _graph; ///< The graph
   std::mt19937_64 _engine; ///< Random engine
   int_gen_t _generator; ///< Uniform int distribution
+
+  bool _allow_duplicate_edges; ///< Whether or not to allow duplicate edges
+  bool _allow_self_loops; ///< Whether or not to allow self loops
 };
 
