@@ -6,7 +6,7 @@
  */
 
 #include "GraphGenerator.hpp"
-#include "UndirectedGraph.hpp"
+#include "ALUGraph.hpp"
 
 #include <iostream>
 #include <cstdlib>

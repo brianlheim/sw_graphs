@@ -6,7 +6,7 @@
  * \date   2017-06-30
  */
 
-#include "UndirectedGraph.hpp"
+#include "ALUGraph.hpp"
 
 #include <istream> // istream
 #include <string> // string

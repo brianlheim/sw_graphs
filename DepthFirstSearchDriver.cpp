@@ -5,7 +5,7 @@
  * \date   2017-06-30
  */
 
-#include "UndirectedGraph.hpp"
+#include "ALUGraph.hpp"
 #include "DepthFirstSearch.hpp"
 #include <iostream>
 
