@@ -101,7 +101,7 @@ public:
 protected:
 
   /// Read in `edge_count` edges
-  void read_edges( std::istream& in, size_type edge_count )
+  void readEdges( std::istream& in, size_type edge_count )
   {
     for ( size_type i = 0; i < edge_count; ++i ) {
       VertexID v, w;

@@ -32,5 +32,5 @@ AMUGraph::AMUGraph( istream & in ) : _matrix()
   for ( size_type i = 0; i < vertex_count; ++i )
     _matrix[i].resize( vertex_count, false );
 
-  read_edges( in, edge_count );
+  readEdges( in, edge_count );
 }

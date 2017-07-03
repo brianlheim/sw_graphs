@@ -28,5 +28,5 @@ ALUGraph::ALUGraph( istream & in ) : _adjacencies()
   in >> vertex_count >> edge_count;
 
   _adjacencies.resize( vertex_count );
-  read_edges( in, edge_count );
+  readEdges( in, edge_count );
 }
