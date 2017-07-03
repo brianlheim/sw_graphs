@@ -55,7 +55,7 @@ public:
   //--------- Description ---------//
 
   /// Returns the graph as a string
-  virtual std::string toString() const
+  std::string toString() const
   {
     std::ostringstream ss;
     // ss << v() << '\n' << e() << '\n';
