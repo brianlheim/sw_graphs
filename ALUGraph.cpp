@@ -28,11 +28,7 @@ ALUGraph::ALUGraph( istream & in ) : _adjacencies()
   in >> vertex_count >> edge_count;
 
   _adjacencies.resize( vertex_count );
-  for ( size_type i = 0; i < edge_count; ++i ) {
-    VertexID v, w;
-    in >> v >> w;
-    addEdge( v, w );
-  }
+  read_edges( in, edge_count );
 }
 
 /// TODO: don't print self-loops twice

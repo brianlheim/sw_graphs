@@ -57,4 +57,16 @@ public:
   /// Returns the graph as a string that can be read by the constructor
   virtual std::string toInputString() const = 0;
 
+protected:
+
+  /// Read in `edge_count` edges
+  void read_edges( std::istream& in, size_type edge_count )
+  {
+    for ( size_type i = 0; i < edge_count; ++i ) {
+      VertexID v, w;
+      in >> v >> w;
+      addEdge( v, w );
+    }
+  }
+
 };

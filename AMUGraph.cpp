@@ -32,11 +32,7 @@ AMUGraph::AMUGraph( istream & in ) : _matrix()
   for ( size_type i = 0; i < vertex_count; ++i )
     _matrix[i].resize( vertex_count, false );
 
-  for ( size_type i = 0; i < edge_count; ++i ) {
-    VertexID v, w;
-    in >> v >> w;
-    addEdge( v, w );
-  }
+  read_edges( in, edge_count );
 }
 
 /// TODO: don't print self-loops twice
