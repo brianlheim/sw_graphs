@@ -16,7 +16,7 @@
 #include <ostream> // ostream
 
 /// Basic undirected graph using an adjacency list.
-class ALUGraph : AbstractUGraph
+class ALUGraph : public AbstractUGraph
 {
 public:
   //--------- Constructors --------//

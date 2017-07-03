@@ -16,7 +16,7 @@
 #include <ostream> // ostream
 
 /// Basic undirected graph using an adjacency matrix.
-class AMUGraph : AbstractUGraph
+class AMUGraph : public AbstractUGraph
 {
 public:
   //--------- Constructors --------//
