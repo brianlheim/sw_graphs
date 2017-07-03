@@ -61,14 +61,6 @@ public:
     _matrix[v][w] = _matrix[w][v] = true;
   }
 
-  //--------- Description ---------//
-
-  /// Returns the graph as a string
-  std::string toString() const;
-
-  /// Returns the graph as a string that can be read by the constructor
-  std::string toInputString() const;
-
 private:
 
   typedef std::vector<std::vector<bool>> AdjacencyMatrix;

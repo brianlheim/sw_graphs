@@ -11,6 +11,9 @@
 #include <cstddef> // size_t
 #include <istream> // istream
 #include <vector> // vector
+#include <sstream> // ostringstream
+#include <ios> // streamsize
+#include <cmath> // log10, ceil
 
 /// Abstract, basic undirected graph.
 class AbstractUGraph
@@ -52,10 +55,48 @@ public:
   //--------- Description ---------//
 
   /// Returns the graph as a string
-  virtual std::string toString() const = 0;
+  virtual std::string toString() const
+  {
+    std::ostringstream ss;
+    // ss << v() << '\n' << e() << '\n';
+    std::streamsize vertex_field_width = getVertexFieldWidth();
+    for ( size_type i = 0; i < v(); ++i ) {
+      ss.width( vertex_field_width );
+      ss << i << " |";
+      bool seen_self_loop = false;
+      for ( auto const& vertex : verticesAdjacentTo(i) ) {
+        if ( vertex == i ) {
+          if ( seen_self_loop )
+            ss << ' ' << vertex;
+          seen_self_loop = !seen_self_loop;
+        }
+      }
+      ss << '\n';
+    }
+
+    return ss.str();
+  }
 
   /// Returns the graph as a string that can be read by the constructor
-  virtual std::string toInputString() const = 0;
+  std::string toInputString() const
+  {
+    std::ostringstream ss;
+    ss << v() << '\n' << e() << '\n';
+    for ( size_type i = 0; i < v(); ++i ) {
+      bool seen_self_loop = false;
+      for ( auto const& vertex : verticesAdjacentTo(i) ) {
+        if ( vertex == i ) {
+          if ( seen_self_loop )
+            ss << i << ' ' << vertex << '\n';
+          seen_self_loop = !seen_self_loop;
+        } else if ( vertex > i ) {
+          ss << i << ' ' << vertex << '\n';
+        }
+      }
+    }
+
+    return ss.str();
+  }
 
 protected:
 
@@ -67,6 +108,14 @@ protected:
       in >> v >> w;
       addEdge( v, w );
     }
+  }
+
+private:
+
+  /// Return the field width for a list of vertices
+  std::streamsize getVertexFieldWidth() const
+  {
+    return (int)std::ceil( std::log10(v()) );
   }
 
 };
