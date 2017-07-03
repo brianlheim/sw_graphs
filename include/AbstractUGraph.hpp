@@ -69,6 +69,8 @@ public:
           if ( seen_self_loop )
             ss << ' ' << vertex;
           seen_self_loop = !seen_self_loop;
+        } else {
+          ss << ' ' << vertex;
         }
       }
       ss << '\n';
