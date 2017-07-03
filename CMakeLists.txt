@@ -9,7 +9,7 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1z -Wpedantic -Wall -Werror")
 include_directories ("${PROJECT_SOURCE_DIR}/include")
 
 # library for undirected graph
-add_library (UGraph ALUGraph.cpp)
+add_library (UGraph ALUGraph.cpp AMUGraph.cpp)
 
 # executable for graph generator
 add_executable (graph_gen GraphGeneratorDriver.cpp)
