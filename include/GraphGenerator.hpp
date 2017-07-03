@@ -77,9 +77,9 @@ protected:
       v = _generator(_engine);
       w = _generator(_engine);
 
-      if ( v != w ) {
+      if ( _allow_self_loops || v != w ) {
         typename G::AdjacencyList adj_list = _graph.verticesAdjacentTo(v);
-        if ( std::find( adj_list.begin(), adj_list.end(), w ) == adj_list.end() ) {
+        if ( _allow_duplicate_edges || std::find( adj_list.begin(), adj_list.end(), w ) == adj_list.end() ) {
           _graph.addEdge( v, w );
           break;
         } else {
