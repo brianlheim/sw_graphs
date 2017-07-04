@@ -24,19 +24,26 @@ public:
     std::stack<V_ID> to_search;
     to_search.push( s );
 
+    // maintain invariants: we've visited _count vertices, and each
+    // has been marked as visited.
+    _marks[s] = true;
+    ++_count;
+
     while ( !to_search.empty() ) {
       const V_ID id = to_search.top();
       to_search.pop();
 
-      // maintain invariants: we've visited _count vertices, and each
-      // has been marked as visited.
-      ++_count;
-      _marks[id] = true;
-
       // visit all the unvisited neighbors of the current vertex
-      for ( auto const adj_id : g.verticesAdjacentTo(id) )
-        if ( !_marks[adj_id] )
+      for ( auto const adj_id : g.verticesAdjacentTo(id) ) {
+        if ( !_marks[adj_id] ) {
           to_search.push( adj_id );
+
+          // maintain invariants: we've visited _count vertices, and each
+          // has been marked as visited.
+          _marks[adj_id] = true;
+          ++_count;
+        }
+      }
     }
   }
 
