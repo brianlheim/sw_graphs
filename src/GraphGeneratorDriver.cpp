@@ -9,6 +9,8 @@
 #include "AbstractUGraph.hpp"
 #include "ALUGraph.hpp"
 
+#include <boost/program_options.hpp>
+
 #include <iostream>
 #include <cstdlib>
 
@@ -16,12 +18,25 @@ using std::cout;
 using std::endl;
 using std::cin;
 
+namespace bpo = boost::program_options;
+
+void parse_program_options( int argc, char **argv )
+{
+  bpo::options_description desc("Allowed options");
+  desc.add_options()
+    ("help", "Show this message")
+    ("self-loop", "Allow self-loops in the generated graph")
+    ("dupe-edges", "Allow duplicate edges in the generated graph")
+    ;
+
+  bpo::variables_map vm;
+  bpo::store( bpo::parse_command_line(argc, argv, desc), vm );
+  bpo::notify( vm );
+}
+
 int main( int argc, char **argv )
 {
-  if ( argc < 3 ) {
-    cout << "Usage: graph_generator <vertexCount> <edgeCount>" << endl;
-    return 1;
-  }
+  parse_program_options( argc, argv );
 
   long v_long = std::atol( *++argv );
   long e_long = std::atol( *++argv );
