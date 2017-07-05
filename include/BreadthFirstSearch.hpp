@@ -36,13 +36,8 @@ public:
       V_ID current_vertex = getNextVisitedVertex( vertex_queue );
 
       // for each of that vertex's adjacents
-      for ( auto const adj_vertex : g.verticesAdjacentTo(current_vertex) ) {
-
-        // if the adjacent is marked, ignore it
-        // otherwise, mark it and add it to the back of the queue
-        if ( !_marks[adj_vertex] )
-          visitVertex( vertex_queue, adj_vertex );
-      }
+      for ( auto const adj_vertex : g.verticesAdjacentTo(current_vertex) )
+        checkAdjacent( vertex_queue, adj_vertex );
     }
   }
 
@@ -79,6 +74,20 @@ private:
 
     vq.pop();
     return ret;
+  }
+
+  /// Check all the vertices adjacent to the current vertex
+  void checkAdjacent( VertexQueue& vq, V_ID const id )
+  {
+    if ( _trace )
+      _out << "Checking adjacent " << id << ".\n";
+
+    // if the adjacent is marked, ignore it
+    // otherwise, mark it and add it to the back of the queue
+    if ( !_marks[id] )
+      visitVertex( vq, id );
+    else if ( _trace )
+      _out << "Already marked.\n";
   }
 
   std::vector<bool> _marks;
