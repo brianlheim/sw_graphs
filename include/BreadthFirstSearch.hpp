@@ -18,11 +18,11 @@ public:
   typedef std::queue<V_ID> VertexQueue;
 
   /// Find vertices connected to source vertex `s`
-  BreadthFirstSearch( G g, V_ID s ) :
+  BreadthFirstSearch( G g, V_ID s, bool traceProgress, std::ostream& os ) :
     _marks(g.v(), false),
     _count(0),
-    _trace(true),
-    _out(std::cout)
+    _trace(traceProgress),
+    _out(os)
   {
     // create a queue of vertices to explore
     VertexQueue vertex_queue;

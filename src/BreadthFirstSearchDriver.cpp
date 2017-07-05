@@ -35,7 +35,7 @@ int main()
     if ( !cin )
       break;
 
-    BreadthFirstSearch<ALUGraph> bfs( ug, v_id );
+    BreadthFirstSearch<ALUGraph> bfs( ug, v_id, true, cout );
 
     cout << "There are " << bfs.count() << " vertices connected to " << v_id << endl;
   }
