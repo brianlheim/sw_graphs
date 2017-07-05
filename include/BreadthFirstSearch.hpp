@@ -28,13 +28,13 @@ public:
     VertexQueue vertex_queue;
 
     // add the source to the back of the queue
-    push_queue( vertex_queue, s );
+    visitVertex( vertex_queue, s );
 
     while ( !vertex_queue.empty() ) {
 
       // get the front item off the queue
       V_ID current_vertex = vertex_queue.front();
-      pop_queue( vertex_queue );
+      getNextVisitedVertex( vertex_queue );
 
       // for each of that vertex's adjacents
       for ( auto const adj_vertex : g.verticesAdjacentTo(current_vertex) ) {
@@ -42,7 +42,7 @@ public:
         // if the adjacent is marked, ignore it
         // otherwise, mark it and add it to the back of the queue
         if ( !_marks[adj_vertex] )
-          push_queue( vertex_queue, adj_vertex );
+          visitVertex( vertex_queue, adj_vertex );
       }
     }
   }
@@ -56,7 +56,7 @@ public:
 private:
 
   /// All the bookkeeping needed to remember a vertex for later processing
-  void push_queue( VertexQueue& vq, V_ID const id )
+  void visitVertex( VertexQueue& vq, V_ID const id )
   {
     // mark the source (updating the counter)
     _marks[id] = true;
@@ -70,7 +70,7 @@ private:
   }
 
   /// All the bookkeeping needed to get a vertex for processing
-  void pop_queue( VertexQueue& vq ) const
+  void getNextVisitedVertex( VertexQueue& vq ) const
   {
     // log activity
     if ( _trace )
