@@ -27,23 +27,23 @@ public:
     ++_count;
 
     // add the source to the back of the queue
-    vertex_queue.push_back( s );
+    vertex_queue.push( s );
 
     while ( !vertex_queue.empty() ) {
 
       // get the front item off the queue
       V_ID current_vertex = vertex_queue.front();
-      vertex_queue.pop_front();
+      vertex_queue.pop();
 
       // for each of that vertex's adjacents
-      for ( auto const adj_vertex : current_vertex ) {
+      for ( auto const adj_vertex : g.verticesAdjacentTo(current_vertex) ) {
 
         // if the adjacent is marked, ignore it
         // otherwise, mark it and add it to the back of the queue
         if ( !_marks[adj_vertex] ) {
           _marks[adj_vertex] = true;
           ++_count;
-          vertex_queue.push_back( adj_vertex );
+          vertex_queue.push( adj_vertex );
         }
       }
     }
