@@ -73,7 +73,7 @@ protected:
   /// `true` if we can add `num_edges` more edges to the graph
   bool canAddEdges( size_type num_edges ) const
   {
-    return _allow_duplicate_edges || ( maxEdges() < num_edges + _graph.e() );
+    return _allow_duplicate_edges || ( maxEdges() >= num_edges + _graph.e() );
   }
 
   /// Returns the maximum number of edges this graph can contain
