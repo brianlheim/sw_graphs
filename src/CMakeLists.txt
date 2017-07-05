@@ -20,5 +20,9 @@ target_link_libraries ( undir_graph UGraph )
 add_executable ( dfs DepthFirstSearchDriver.cpp )
 target_link_libraries ( dfs UGraph )
 
+# executable for breadth-first search
+add_executable ( bfs BreadthFirstSearchDriver.cpp )
+target_link_libraries ( bfs UGraph )
+
 # install files
-install ( TARGETS graph_gen undir_graph dfs DESTINATION "${PROJECT_SOURCE_DIR}/bin" )
+install ( TARGETS graph_gen undir_graph dfs bfs DESTINATION "${PROJECT_SOURCE_DIR}/bin" )
