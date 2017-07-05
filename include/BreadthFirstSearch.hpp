@@ -33,8 +33,7 @@ public:
     while ( !vertex_queue.empty() ) {
 
       // get the front item off the queue
-      V_ID current_vertex = vertex_queue.front();
-      getNextVisitedVertex( vertex_queue );
+      V_ID current_vertex = getNextVisitedVertex( vertex_queue );
 
       // for each of that vertex's adjacents
       for ( auto const adj_vertex : g.verticesAdjacentTo(current_vertex) ) {
@@ -70,13 +69,16 @@ private:
   }
 
   /// All the bookkeeping needed to get a vertex for processing
-  void getNextVisitedVertex( VertexQueue& vq ) const
+  V_ID getNextVisitedVertex( VertexQueue& vq ) const
   {
+    V_ID ret = vq.front();
+
     // log activity
     if ( _trace )
-      _out << "Popping the queue. Front element is " << vq.front() << ".\n";
+      _out << "Popping the queue. Front element is " << ret << ".\n";
 
     vq.pop();
+    return ret;
   }
 
   std::vector<bool> _marks;
