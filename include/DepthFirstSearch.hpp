@@ -10,9 +10,10 @@
 #include <vector>
 #include <stack>
 
-template<class G, class V_ID> class DepthFirstSearch
+template<class G> class DepthFirstSearch
 {
 public:
+  typedef typename G::VertexID V_ID;
 
   /// Find vertices connected to source vertex `s`
   DepthFirstSearch( G g, V_ID s ) :
