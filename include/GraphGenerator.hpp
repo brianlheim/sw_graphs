@@ -16,6 +16,7 @@ template<class G> class GraphGenerator
 {
 public:
   typedef std::uniform_int_distribution<typename G::VertexID> int_gen_t;
+  typedef std::mt19937_64 engine_t;
   typedef typename G::size_type size_type;
 
   /// Creates an unconnected graph with `size` vertices.
@@ -108,7 +109,7 @@ protected:
 
 private:
   G _graph;                    ///< The graph
-  std::mt19937_64 _engine;     ///< Random engine
+  engine_t _engine;            ///< Random engine
   int_gen_t _generator;        ///< Uniform int distribution
 
   bool _allow_duplicate_edges; ///< Whether or not to allow duplicate edges
