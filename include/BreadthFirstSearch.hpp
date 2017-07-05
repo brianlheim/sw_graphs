@@ -11,9 +11,10 @@
 #include <queue>
 #include <iostream>
 
-template<class G, class V_ID> class BreadthFirstSearch
+template<class G> class BreadthFirstSearch
 {
 public:
+  typedef typename G::VertexID V_ID;
   typedef std::queue<V_ID> VertexQueue;
 
   /// Find vertices connected to source vertex `s`
