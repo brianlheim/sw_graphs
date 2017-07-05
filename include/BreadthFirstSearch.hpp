@@ -9,7 +9,7 @@
 
 #include <vector>
 #include <queue>
-#include <iostream>
+#include <ostream>
 
 template<class G> class BreadthFirstSearch
 {
