@@ -22,7 +22,7 @@ namespace bpo = boost::program_options;
 
 void parse_program_options( int argc, char **argv )
 {
-  bpo::options_description desc("Allowed options");
+  bpo::options_description desc( "Allowed options" );
   desc.add_options()
     ("help", "Show this message")
     ("self-loop", "Allow self-loops in the generated graph")
