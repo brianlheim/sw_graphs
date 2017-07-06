@@ -35,7 +35,7 @@ int main()
     if ( !cin )
       break;
 
-    DepthFirstSearch<ALUGraph> dfs( ug, v_id );
+    DepthFirstSearch<ALUGraph> dfs( ug, v_id, true, cout );
 
     cout << "There are " << dfs.count() << " vertices connected to " << v_id << endl;
   }
