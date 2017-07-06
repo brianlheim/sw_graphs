@@ -27,6 +27,8 @@ void parse_program_options( int argc, char **argv )
     ("help,h"        , "Show this message")
     ("self-loop,s"   , "Allow self-loops in the generated graph")
     ("dupe-edges,d"  , "Allow duplicate edges in the generated graph")
+    ("list,l"        , "Use an adjacency list graph implementation. Incompatible with -m")
+    ("matrix,m"      , "Use an adjacency matrix graph implementation. Incompatible with -l")
 
     ("vertex-count,v", bpo::value<size_t>(), "Number of vertices in the graph")
     ("edge-count,e"  , bpo::value<size_t>(), "Number of edges in the graph")
