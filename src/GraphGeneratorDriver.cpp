@@ -24,11 +24,11 @@ void parse_program_options( int argc, char **argv )
 {
   bpo::options_description desc( "Allowed options" );
   desc.add_options()
-    ("help", "Show this message")
-    ("self-loop", "Allow self-loops in the generated graph")
-    ("dupe-edges", "Allow duplicate edges in the generated graph")
+    ("help"        , "Show this message")
+    ("self-loop"   , "Allow self-loops in the generated graph")
+    ("dupe-edges"  , "Allow duplicate edges in the generated graph")
     ("vertex-count", "Number of vertices in the graph")
-    ("edge-count", "Number of edges in the graph")
+    ("edge-count"  , "Number of edges in the graph")
     ;
 
   // the positional arguments are vertex-count and edge-count
