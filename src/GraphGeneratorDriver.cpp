@@ -27,7 +27,14 @@ void parse_program_options( int argc, char **argv )
     ("help", "Show this message")
     ("self-loop", "Allow self-loops in the generated graph")
     ("dupe-edges", "Allow duplicate edges in the generated graph")
+    ("vertex-count", "Number of vertices in the graph")
+    ("edge-count", "Number of edges in the graph")
     ;
+
+  // the positional arguments are vertex-count and edge-count
+  bpo::positional_options_description pod;
+  pod.add( "vertex-count", 1 );
+  pod.add( "edge-count", 1 );
 
   bpo::variables_map vm;
   bpo::store( bpo::parse_command_line(argc, argv, desc), vm );
