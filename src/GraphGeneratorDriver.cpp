@@ -20,7 +20,7 @@ using std::cin;
 
 namespace bpo = boost::program_options;
 
-void parse_program_options( int argc, char **argv )
+void parse_program_options( int argc, char **argv, bpo::variables_map& vm )
 {
   bpo::options_description desc( "Allowed options" );
   desc.add_options()
@@ -39,14 +39,17 @@ void parse_program_options( int argc, char **argv )
   pod.add( "vertex-count", 1 );
   pod.add( "edge-count", 1 );
 
-  bpo::variables_map vm;
-  bpo::store( bpo::parse_command_line(argc, argv, desc), vm );
+  bpo::store(
+      bpo::command_line_parser(argc, argv).options(desc).positional(pod).run(),
+      vm
+      );
   bpo::notify( vm );
 }
 
 int main( int argc, char **argv )
 {
-  parse_program_options( argc, argv );
+  bpo::variables_map vm;
+  parse_program_options( argc, argv, vm );
 
   long v_long = std::atol( *++argv );
   long e_long = std::atol( *++argv );
