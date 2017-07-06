@@ -30,8 +30,8 @@ void parse_program_options( int argc, char **argv )
     ("list,l"        , "Use an adjacency list graph implementation. Incompatible with -m")
     ("matrix,m"      , "Use an adjacency matrix graph implementation. Incompatible with -l")
 
-    ("vertex-count,v", bpo::value<size_t>(), "Number of vertices in the graph")
-    ("edge-count,e"  , bpo::value<size_t>(), "Number of edges in the graph")
+    ("vertex-count,v", bpo::value<AbstractUGraph::size_type>(), "Number of vertices in the graph")
+    ("edge-count,e"  , bpo::value<AbstractUGraph::size_type>(), "Number of edges in the graph")
     ;
 
   // the positional arguments are vertex-count and edge-count
