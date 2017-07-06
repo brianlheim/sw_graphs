@@ -33,7 +33,7 @@ public:
     while ( !vertex_queue.empty() ) {
 
       // get the front item off the queue
-      V_ID current_vertex = getNextVisitedVertex( vertex_queue );
+      const V_ID current_vertex = getNextVisitedVertex( vertex_queue );
 
       // for each of that vertex's adjacents
       for ( auto const adj_vertex : g.verticesAdjacentTo(current_vertex) )
