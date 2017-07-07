@@ -90,19 +90,27 @@ protected:
 
   void addEdge()
   {
+    // loop until we successfully add an edge
     while ( true ) {
       AbstractUGraph::VertexID v, w;
       v = _generator(_engine);
       w = _generator(_engine);
 
+      // Check for a self-loop
       if ( _allow_self_loops || v != w ) {
+
+        // Check for an existing edge
         AbstractUGraph::AdjacencyList adj_list = _graph->verticesAdjacentTo(v);
         if ( _allow_duplicate_edges || std::find( adj_list.begin(), adj_list.end(), w ) == adj_list.end() ) {
+
+          // Finally add the edge and exit the loop
           _graph->addEdge( v, w );
           break;
+
         } else {
           std::clog << "Skipping existing edge: (" << v << ", " << w << ")" << std::endl;
         }
+
       } else {
         std::clog << "Skipping self-loop: (" << v << ", " << w << ")" << std::endl;
       }
