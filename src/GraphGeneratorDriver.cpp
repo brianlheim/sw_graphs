@@ -20,9 +20,8 @@ using std::cin;
 
 namespace bpo = boost::program_options;
 
-void parse_program_options( int argc, char **argv, bpo::variables_map& vm )
+void parse_program_options( int argc, char **argv, bpo::options_description& desc, bpo::variables_map& vm )
 {
-  bpo::options_description desc( "Allowed options" );
   desc.add_options()
     ("help,h"        , "Show this message")
     ("self-loop,s"   , "Allow self-loops in the generated graph")
@@ -48,8 +47,9 @@ void parse_program_options( int argc, char **argv, bpo::variables_map& vm )
 
 int main( int argc, char **argv )
 {
+  bpo::options_description desc( "Allowed options" );
   bpo::variables_map vm;
-  parse_program_options( argc, argv, vm );
+  parse_program_options( argc, argv, desc, vm );
 
   long v_long = std::atol( *++argv );
   long e_long = std::atol( *++argv );
