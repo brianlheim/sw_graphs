@@ -27,7 +27,7 @@ void parse_program_options( int argc, char **argv, bpo::options_description& des
     ("help,h"        , "Show this message")
     ("self-loop,s"   , "Allow self-loops in the generated graph")
     ("dupe-edges,d"  , "Allow duplicate edges in the generated graph. Incompatible with -m")
-    ("list,l"        , "Use an adjacency list graph implementation. Incompatible with -m")
+    ("list,l"        , "Use an adjacency list graph implementation. If no graph type is specified, this is the default. Incompatible with -m")
     ("matrix,m"      , "Use an adjacency matrix graph implementation. Incompatible with -l")
 
     ("vertex-count,v", bpo::value<AbstractUGraph::size_type>(), "Number of vertices in the graph")
