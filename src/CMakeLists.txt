@@ -11,6 +11,7 @@ add_library ( UGraph ALUGraph.cpp AMUGraph.cpp )
 # executable for graph generator
 add_executable ( graph_gen GraphGeneratorDriver.cpp )
 target_link_libraries ( graph_gen UGraph )
+target_link_libraries ( graph_gen ${Boost_LIBRARIES} )
 
 # executable for undir graph driver
 add_executable ( undir_graph UGraphDriver.cpp )
