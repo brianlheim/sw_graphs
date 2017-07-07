@@ -71,8 +71,8 @@ int main( int argc, char **argv )
     std::exit(EXIT_FAILURE);
   }
 
-  size_type v = vm["vertex-count"].as<size_type>();
-  size_type e = vm["edge-count"].as<size_type>();
+  size_type const v = vm["vertex-count"].as<size_type>();
+  size_type const e = vm["edge-count"].as<size_type>();
 
   AbstractUGraph * gptr;
   if ( vm.count("list") )
