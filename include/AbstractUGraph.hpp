@@ -46,6 +46,9 @@ public:
   /// Vertices adjacent to the given vertex
   virtual AdjacencyList verticesAdjacentTo( VertexID const v ) const = 0;
 
+  /// Degree of vertex `v`
+  virtual size_type degree( VertexID const v ) const = 0;
+
   //--------- Mutators ---------//
 
   /// Creates an edge between the two named vertices.

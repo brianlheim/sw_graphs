@@ -52,6 +52,12 @@ public:
     return adj_list;
   }
 
+  /// Degree of vertex `v`; a self-loop is counted twice.
+  virtual size_type degree( VertexID const v ) const
+  {
+    return std::count( _matrix[v].begin(), _matrix[v].end(), true ) + (_matrix[v][v] ? 1 : 0);
+  }
+
   //--------- Mutators ---------//
 
   /// Creates an edge between the two named vertices.

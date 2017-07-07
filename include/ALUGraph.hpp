@@ -47,6 +47,12 @@ public:
     return _adjacencies[v];
   }
 
+  /// Degree of vertex `v`
+  size_type degree( VertexID const v ) const
+  {
+    return _adjacencies[v].size();
+  }
+
   //--------- Mutators ---------//
 
   /// Creates an edge between the two named vertices.
