@@ -46,7 +46,7 @@ public:
   /// Vertices adjacent to the given vertex
   virtual AdjacencyList verticesAdjacentTo( VertexID const v ) const = 0;
 
-  /// Degree of vertex `v`
+  /// Degree of vertex `v`; a self-loop is considered to add two to this count.
   virtual size_type degree( VertexID const v ) const = 0;
 
   //--------- Mutators ---------//
