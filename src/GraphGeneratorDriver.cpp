@@ -62,6 +62,6 @@ int main( int argc, char **argv )
   v = (ALUGraph::size_type)v_long;
   e = (ALUGraph::size_type)e_long;
 
-  GraphGenerator<ALUGraph> gen( v, e );
+  GraphGenerator gen( new ALUGraph(v), e );
   cout << gen.getGraph().toInputString();
 }
