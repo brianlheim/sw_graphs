@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 
   // default is to use an adjacency list
   if ( argc == 1 )
-    opt = "-m";
+    opt = "-l";
   else
     opt = *++argv;
 
