@@ -75,10 +75,10 @@ int main( int argc, char **argv )
   size_type const e = vm["edge-count"].as<size_type>();
 
   AbstractUGraph * gptr;
-  if ( vm.count("list") )
-    gptr = new ALUGraph(v);
-  else
+  if ( vm.count("matrix") )
     gptr = new AMUGraph(v);
+  else
+    gptr = new ALUGraph(v);
 
   GraphGenerator gen( gptr );
   gen.allowSelfLoops( vm.count("self-loop") );
