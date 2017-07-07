@@ -44,23 +44,7 @@ public:
   /// Vertices adjacent to the given vertex
   AdjacencyList verticesAdjacentTo( VertexID const v ) const
   {
-    AdjacencyList result;
-    bool seen_self_loop = false;
-    AdjacencyList const& adj_list = _adjacencies[v];
-
-    // remove self-loop duplicates
-    for ( AdjacencyList::const_iterator it = adj_list.begin(); it != adj_list.end(); ++it) {
-      if ( *it == v ) {
-        if ( seen_self_loop )
-          result.push_back( *it );
-
-        seen_self_loop = !seen_self_loop;
-      } else {
-        result.push_back( *it );
-      }
-    }
-
-    return result;
+    return _adjacencies[v];
   }
 
   //--------- Mutators ---------//
