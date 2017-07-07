@@ -8,6 +8,7 @@
 #include "GraphGenerator.hpp"
 #include "AbstractUGraph.hpp"
 #include "ALUGraph.hpp"
+#include "AMUGraph.hpp"
 
 #include <boost/program_options.hpp>
 
@@ -20,14 +21,13 @@ using std::cin;
 
 namespace bpo = boost::program_options;
 
-void parse_program_options( int argc, char **argv, bpo::variables_map& vm )
+void parse_program_options( int argc, char **argv, bpo::options_description& desc, bpo::variables_map& vm )
 {
-  bpo::options_description desc( "Allowed options" );
   desc.add_options()
     ("help,h"        , "Show this message")
     ("self-loop,s"   , "Allow self-loops in the generated graph")
     ("dupe-edges,d"  , "Allow duplicate edges in the generated graph. Incompatible with -m")
-    ("list,l"        , "Use an adjacency list graph implementation. Incompatible with -m")
+    ("list,l"        , "Use an adjacency list graph implementation. If no graph type is specified, this is the default. Incompatible with -m")
     ("matrix,m"      , "Use an adjacency matrix graph implementation. Incompatible with -l")
 
     ("vertex-count,v", bpo::value<AbstractUGraph::size_type>(), "Number of vertices in the graph")
@@ -48,20 +48,42 @@ void parse_program_options( int argc, char **argv, bpo::variables_map& vm )
 
 int main( int argc, char **argv )
 {
-  bpo::variables_map vm;
-  parse_program_options( argc, argv, vm );
+  using size_type = AbstractUGraph::size_type;
 
-  long v_long = std::atol( *++argv );
-  long e_long = std::atol( *++argv );
-  if ( v_long < 0 || e_long < 0 ) {
-    cout << "vertexCount and edgeCount must both be positive" << endl;
-    return 2;
+  bpo::options_description desc( "Allowed options" );
+  bpo::variables_map vm;
+  parse_program_options( argc, argv, desc, vm );
+
+  // if help is requested, just print help and exit
+  if ( vm.count("help") ) {
+    cout << desc << endl;
+    std::exit(EXIT_SUCCESS);
   }
 
-  ALUGraph::size_type v, e;
-  v = (ALUGraph::size_type)v_long;
-  e = (ALUGraph::size_type)e_long;
+  // check for incompatible options
+  if ( vm.count("dupe-edges") && vm.count("matrix") ) {
+    cout << "*** Can't use duplicate edges with matrix implementation" << endl;
+    std::exit(EXIT_FAILURE);
+  }
 
-  GraphGenerator gen( new ALUGraph(v), e );
+  if ( vm.count("matrix") && vm.count("list") ) {
+    cout << "*** Only one of matrix or list may be requested" << endl;
+    std::exit(EXIT_FAILURE);
+  }
+
+  size_type const v = vm["vertex-count"].as<size_type>();
+  size_type const e = vm["edge-count"].as<size_type>();
+
+  AbstractUGraph * gptr;
+  if ( vm.count("matrix") )
+    gptr = new AMUGraph(v);
+  else
+    gptr = new ALUGraph(v);
+
+  GraphGenerator gen( gptr );
+  gen.allowSelfLoops( vm.count("self-loop") );
+  gen.allowDuplicateEdges( vm.count("dupe-edges") );
+  gen.addEdges( e );
+
   cout << gen.getGraph().toInputString();
 }

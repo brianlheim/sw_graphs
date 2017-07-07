@@ -22,7 +22,7 @@ public:
   //--------- Constructors --------//
 
   /// size constructor
-  AMUGraph( size_type const size );
+  AMUGraph( size_type const size ) : _matrix(size, std::vector<bool>(size)) { }
 
   /// input stream constructor
   AMUGraph( std::istream & in );
