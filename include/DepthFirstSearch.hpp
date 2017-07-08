@@ -63,20 +63,20 @@ private:
   }
 
   /// All the bookkeeping needed to get a vertex for processing
-  V_ID getNextVisitedVertex( VertexStack& vq ) const
+  V_ID getNextVisitedVertex( VertexStack& vs ) const
   {
-    V_ID ret = vq.top();
+    V_ID ret = vs.top();
 
     // log activity
     if ( _trace )
       _out << "Popping the stack. Top element is " << ret << ".\n";
 
-    vq.pop();
+    vs.pop();
     return ret;
   }
 
   /// Check all the vertices adjacent to the current vertex
-  void checkAdjacent( VertexStack& vq, V_ID const id )
+  void checkAdjacent( VertexStack& vs, V_ID const id )
   {
     if ( _trace )
       _out << "Checking adjacent " << id << ".\n";
@@ -84,7 +84,7 @@ private:
     // if the adjacent is marked, ignore it
     // otherwise, mark it and add it to the back of the queue
     if ( !_marks[id] )
-      visitVertex( vq, id );
+      visitVertex( vs, id );
     else if ( _trace )
       _out << "Already marked.\n";
   }
