@@ -89,10 +89,16 @@ private:
       _out << "Already marked.\n";
   }
 
+  inline static std::string indentString( size_t count )
+  {
+    return std::string( count*TAB_SIZE, ' ' );
+  }
+
   std::vector<bool> _marks;
 
   size_t _count;
   bool _trace;
   std::ostream& _out;
 
+  static const size_t TAB_SIZE = 2;
 };
