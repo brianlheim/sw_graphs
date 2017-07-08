@@ -57,7 +57,7 @@ private:
 
     // log activity
     if ( _trace )
-      _out << "Pushing " << id << ".\n";
+      _out << indentString(vs.size()) << id << " push\n";
 
     vs.push( id );
   }
@@ -66,12 +66,12 @@ private:
   V_ID getNextVisitedVertex( VertexStack& vs ) const
   {
     V_ID ret = vs.top();
+    vs.pop();
 
     // log activity
     if ( _trace )
-      _out << "Popping the stack. Top element is " << ret << ".\n";
+      _out << indentString(vs.size()) << ret << " pop\n";
 
-    vs.pop();
     return ret;
   }
 
@@ -79,14 +79,12 @@ private:
   void checkAdjacent( VertexStack& vs, V_ID const id )
   {
     if ( _trace )
-      _out << "Checking adjacent " << id << ".\n";
+      _out << indentString(vs.size()) << "(" << id << ")\n";
 
     // if the adjacent is marked, ignore it
     // otherwise, mark it and add it to the back of the queue
     if ( !_marks[id] )
       visitVertex( vs, id );
-    else if ( _trace )
-      _out << "Already marked.\n";
   }
 
   inline static std::string indentString( size_t count )
