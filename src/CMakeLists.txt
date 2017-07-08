@@ -20,6 +20,7 @@ target_link_libraries ( undir_graph UGraph )
 # executable for depth-first search
 add_executable ( dfs DepthFirstSearchDriver.cpp )
 target_link_libraries ( dfs UGraph )
+target_link_libraries ( dfs ${Boost_LIBRARIES} )
 
 # executable for breadth-first search
 add_executable ( bfs BreadthFirstSearchDriver.cpp )
