@@ -23,3 +23,7 @@ See `--help` on each executable for detailed instructions.
 
 - Boost program\_options library >= 1.63.0
 - CMake >= 3.0
+
+If you have [homebrew](https://brew.sh):
+
+    brew install cmake boost
