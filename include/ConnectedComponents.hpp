@@ -56,7 +56,7 @@ private:
 
   std::vector<bool> _marks;
   std::vector<int> _ids;
-  std::ostream& _out;
   size_type _count;
   bool _trace;
+  std::ostream& _out;
 };
