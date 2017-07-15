@@ -10,6 +10,7 @@
 
 #include <vector>
 #include <ostream>
+#include <queue>
 
 template<class G> class ConnectedComponents
 {
@@ -27,7 +28,9 @@ public:
   {
     for ( V_ID source = 0; source < g.v(); ++source ) {
       if ( !_marks[source] ) {
-        depthFirstSearch( g, source );
+        // prefer using breadth first search - non-recursive implementation
+        // using a queue is much faster and doesn't croak on large, dense graphs
+        breadthFirstSearch( g, source );
         ++_count;
       }
     }
@@ -52,6 +55,26 @@ private:
     for ( auto const& vertex : g.verticesAdjacentTo(source) )
       if ( !_marks[vertex] )
         depthFirstSearch( g, vertex );
+  }
+
+  /// Basic breadth first search that marks vertices with visits and component IDs
+  void breadthFirstSearch( G& g, V_ID source )
+  {
+    // create an empty vertex queue
+    std::queue<V_ID> vertexQueue;
+
+    vertexQueue.push( source );
+    while ( !vertexQueue.empty() ) {
+      V_ID nextVertex = vertexQueue.front();
+      vertexQueue.pop();
+
+      _marks[nextVertex] = true;
+      _ids[nextVertex] = _count;
+
+      for ( auto const& adjacentVertex : g.verticesAdjacentTo(nextVertex) )
+        if ( !_marks[adjacentVertex] )
+          vertexQueue.push( adjacentVertex );
+    }
   }
 
   std::vector<bool> _marks;
