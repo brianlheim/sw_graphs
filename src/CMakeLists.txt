@@ -25,6 +25,7 @@ target_link_libraries ( dfs ${Boost_LIBRARIES} )
 # executable for breadth-first search
 add_executable ( bfs BreadthFirstSearchDriver.cpp )
 target_link_libraries ( bfs UGraph )
+target_link_libraries ( bfs ${Boost_LIBRARIES} )
 
 # install files
 install ( TARGETS graph_gen undir_graph dfs bfs DESTINATION "${PROJECT_SOURCE_DIR}/bin" )
