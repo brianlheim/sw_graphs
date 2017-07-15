@@ -21,6 +21,7 @@ public:
   ConnectedComponents( G g, bool traceProgress, std::ostream& os ) :
     _marks(g.v(), false),
     _ids(g.v(), 0),
+    _count(0),
     _trace(traceProgress),
     _out(os)
   {
