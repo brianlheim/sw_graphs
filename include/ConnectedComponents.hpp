@@ -51,7 +51,7 @@ private:
     _ids[source] = _count;
     for ( auto const& vertex : g.verticesAdjacentTo(source) )
       if ( !_marks[vertex] )
-        dfs( g, vertex );
+        depthFirstSearch( g, vertex );
   }
 
   std::vector<bool> _marks;
