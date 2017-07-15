@@ -18,19 +18,42 @@ public:
   typedef typename G::size_type size_type;
 
   /// Find the connected components of the graph
-  ConnectedComponents( G g, bool traceProgress, std::ostream& os );
+  ConnectedComponents( G g, bool traceProgress, std::ostream& os ) :
+    _marks(g.v(), false),
+    _ids(g.v(), 0),
+    _trace(traceProgress),
+    _out(os)
+  {
+    for ( V_ID source = 0; source < g.v(); ++source ) {
+      if ( !_marks[source] ) {
+        depthFirstSearch( g, source );
+        ++_count;
+      }
+    }
+  }
 
   /// Returns whether the `source` connected to `target`
-  bool connected( V_ID source, V_ID target );
+  bool connected( V_ID source, V_ID target ) { return _ids[source] == _ids[target]; }
 
   /// Returns the number of separate components in the graph
-  size_type count();
+  size_type count() { return _count; }
 
   /// Returns the ID of the given vertex
-  size_type id( V_ID vertex );
+  size_type id( V_ID vertex ) { return _ids[vertex]; }
 
 private:
 
+  /// Basic depth first search that marks vertices with visits and component IDs
+  void depthFirstSearch( G& g, V_ID source )
+  {
+    _marks[source] = true;
+    _ids[source] = _count;
+    for ( auto const& vertex : g.verticesAdjacentTo(source) )
+      if ( !_marks[source] )
+        dfs( g, source );
+  }
+
+  std::vector<bool> _marks;
   std::vector<int> _ids;
   std::ostream& _out;
   size_type _count;
