@@ -58,7 +58,7 @@ private:
 
     // log activity
     if ( _trace )
-      _out << "Pushing " << id << ".\n";
+      _out << indentString(vq.size()) << id << " push\n";
 
     vq.push( id );
   }
@@ -67,12 +67,12 @@ private:
   V_ID getNextVisitedVertex( VertexQueue& vq ) const
   {
     V_ID ret = vq.front();
+    vq.pop();
 
     // log activity
     if ( _trace )
-      _out << "Popping the queue. Front element is " << ret << ".\n";
+      _out << indentString(vq.size()) << ret << " pop\n";
 
-    vq.pop();
     return ret;
   }
 
@@ -80,14 +80,17 @@ private:
   void checkAdjacent( VertexQueue& vq, V_ID const id )
   {
     if ( _trace )
-      _out << "Checking adjacent " << id << ".\n";
+      _out << indentString(vq.size()) << "(" << id << ")\n";
 
     // if the adjacent is marked, ignore it
     // otherwise, mark it and add it to the back of the queue
     if ( !_marks[id] )
       visitVertex( vq, id );
-    else if ( _trace )
-      _out << "Already marked.\n";
+  }
+
+  inline static std::string indentString( size_t count )
+  {
+    return std::string( count*TAB_SIZE, ' ' );
   }
 
   std::vector<bool> _marks;
@@ -96,4 +99,5 @@ private:
   bool _trace;
   std::ostream& _out;
 
+  static const size_t TAB_SIZE = 2;
 };
