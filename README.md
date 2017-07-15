@@ -4,18 +4,18 @@ C++ implementations of graph algorithms from Sedgewick & Wayne's **Algorithms**,
 
 To build:
 
-  mkdir build
-  cd build
-  cmake ..
-  cmake --build . --target install
+    mkdir build
+    cd build
+    cmake ..
+    cmake --build . --target install
 
 ## Executables
 
-  dfs # depth-first search driver
-  bfs # breadth-first search driver
-  conn\_comp # connected components driver
-  graph\_gen # graph generator
-  undir\_graph # undirected graph driver
+    dfs # depth-first search driver
+    bfs # breadth-first search driver
+    conn\_comp # connected components driver
+    graph\_gen # graph generator
+    undir\_graph # undirected graph driver
 
 See `--help` on each executable for detailed instructions.
   
