@@ -33,4 +33,12 @@ target_link_libraries ( conn_comp UGraph )
 target_link_libraries ( conn_comp ${Boost_LIBRARIES} )
 
 # install files
-install ( TARGETS graph_gen undir_graph dfs bfs conn_comp DESTINATION "${PROJECT_SOURCE_DIR}/bin" )
+install ( TARGETS
+  graph_gen
+  undir_graph
+  dfs
+  bfs
+  conn_comp
+  DESTINATION
+  "${PROJECT_SOURCE_DIR}/bin"
+  )
