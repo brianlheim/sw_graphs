@@ -21,8 +21,8 @@ See `--help` on each executable for detailed instructions.
   
 ## Dependencies
 
-- Boost program\_options library >= 1.63.0
-- CMake >= 3.0
+- boost::program\_options >= 1.63.0
+- cmake >= 3.0
 
 If you have [homebrew](https://brew.sh):
 
