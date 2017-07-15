@@ -50,8 +50,8 @@ private:
     _marks[source] = true;
     _ids[source] = _count;
     for ( auto const& vertex : g.verticesAdjacentTo(source) )
-      if ( !_marks[source] )
-        dfs( g, source );
+      if ( !_marks[vertex] )
+        dfs( g, vertex );
   }
 
   std::vector<bool> _marks;
