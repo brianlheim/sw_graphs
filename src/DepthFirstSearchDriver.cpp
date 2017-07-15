@@ -25,7 +25,7 @@ using std::endl;
 using VertexID = AbstractUGraph::VertexID;
 namespace bpo = boost::program_options;
 
-void parse_program_options( int argc, char **argv, bpo::options_description& desc, bpo::variables_map& vm )
+void parseProgramOptions( int argc, char **argv, bpo::options_description& desc, bpo::variables_map& vm )
 {
   desc.add_options()
     ("help,h"      , "Show this message")
@@ -58,7 +58,7 @@ int main( int argc, char **argv )
 {
   bpo::options_description desc( "Allowed options" );
   bpo::variables_map vm;
-  parse_program_options( argc, argv, desc, vm );
+  parseProgramOptions( argc, argv, desc, vm );
 
   // if help is requested, just print help and exit
   if ( vm.count("help") ) {
