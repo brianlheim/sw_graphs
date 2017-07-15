@@ -39,6 +39,7 @@ install ( TARGETS
   dfs
   bfs
   conn_comp
+
   DESTINATION
   "${PROJECT_SOURCE_DIR}/bin"
   )
