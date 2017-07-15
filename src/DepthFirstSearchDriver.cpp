@@ -63,7 +63,7 @@ int main( int argc, char **argv )
   // if help is requested, just print help and exit
   if ( vm.count("help") ) {
     cout << desc << endl;
-    std::exit(EXIT_SUCCESS);
+    std::exit( EXIT_SUCCESS );
   }
 
   ALUGraph ug = parseGraph( vm );
@@ -83,5 +83,5 @@ int main( int argc, char **argv )
     cout << "There are " << dfs.count() << " vertices connected to " << v_id << endl;
   }
 
-  return 0;
+  std::exit( EXIT_SUCCESS );
 }
