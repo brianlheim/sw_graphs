@@ -15,12 +15,17 @@
 #include <iostream>
 #include <fstream> // ifstream
 #include <string> // string
+#include <vector>
+#include <array>
+#include <numeric>
 
 using std::string;
 using std::ifstream;
 using std::cin;
 using std::cout;
 using std::endl;
+using std::array;
+using std::vector;
 
 using VertexID = AbstractUGraph::VertexID;
 namespace bpo = boost::program_options;
@@ -74,6 +79,27 @@ int main( int argc, char **argv )
   ConnectedComponents<ALUGraph> cc( ug, true, cout );
 
   cout << "There are " << cc.count() << " connected components in the graph " << endl;
+
+  vector<vector<VertexID>> components(cc.count());
+  for ( VertexID vertex = 0; vertex < ug.v(); ++vertex ) {
+    auto const component = cc.id( vertex );
+    components[component].push_back( vertex );
+  }
+
+  cout << "\nThese are the components:\n";
+
+  for ( vector<vector<VertexID>>::const_iterator compIt = components.cbegin(); compIt != components.cend(); ++compIt ) {
+    cout << (compIt - components.cbegin()) << " | ";
+    for ( auto const vertex : *compIt ) {
+      cout << vertex << " ";
+    }
+    cout << "\n";
+  }
+
+  vector<VertexID> componentSizes;
+  std::transform( components.begin(), components.end(), std::back_inserter(componentSizes), []( auto const& vec ) { return vec.size(); } );
+  AbstractUGraph::size_type sum = std::accumulate( componentSizes.begin(), componentSizes.end(), 0 );
+  cout << "\nCompenent size sum: " << sum << "\nGraph size: " << ug.v();
 
   std::exit( EXIT_SUCCESS );
 }
