@@ -71,17 +71,9 @@ int main( int argc, char **argv )
   cout << "The graph is this: " << endl;
   cout << ug.toString();
 
-  VertexID v_id;
-  while (true) {
-    cout << "Enter the vertex to search with, or a non-number to quit: ";
-    cin >> v_id;
-    if ( !cin )
-      break;
+  ConnectedComponents<ALUGraph> cc( ug, true, cout );
 
-    ConnectedComponents<ALUGraph> cc( ug, true, cout );
-
-    cout << "There are " << cc.count() << " vertices connected to " << v_id << endl;
-  }
+  cout << "There are " << cc.count() << " connected components in the graph " << endl;
 
   std::exit( EXIT_SUCCESS );
 }
