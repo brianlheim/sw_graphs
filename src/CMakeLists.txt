@@ -40,6 +40,5 @@ install ( TARGETS
   bfs
   conn_comp
 
-  DESTINATION
-  "${PROJECT_SOURCE_DIR}/bin"
+  DESTINATION "${PROJECT_SOURCE_DIR}/bin"
   )
