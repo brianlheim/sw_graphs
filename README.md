@@ -13,9 +13,9 @@ To build:
 
     dfs # depth-first search driver
     bfs # breadth-first search driver
-    conn\_comp # connected components driver
-    graph\_gen # graph generator
-    undir\_graph # undirected graph driver
+    conn_comp # connected components driver
+    graph_gen # graph generator
+    undir_graph # undirected graph driver
 
 See `--help` on each executable for detailed instructions.
   
