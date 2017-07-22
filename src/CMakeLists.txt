@@ -32,6 +32,11 @@ add_executable ( conn_comp ConnectedComponentsDriver.cpp )
 target_link_libraries ( conn_comp UGraph )
 target_link_libraries ( conn_comp ${Boost_LIBRARIES} )
 
+# executable for graph info's cycle detection
+add_executable ( find_cycle FindCycleDriver.cpp )
+target_link_libraries ( find_cycle UGraph )
+target_link_libraries ( find_cycle ${Boost_LIBRARIES} )
+
 # install files
 install ( TARGETS
   graph_gen
@@ -39,6 +44,7 @@ install ( TARGETS
   dfs
   bfs
   conn_comp
+  find_cycle
 
   DESTINATION "${PROJECT_SOURCE_DIR}/bin"
   )
