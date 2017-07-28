@@ -30,6 +30,7 @@ void parseProgramOptions( int argc, char **argv, bpo::options_description& desc,
   desc.add_options()
     ("help,h"      , "Show this message")
     ("input-file,i", "Input file to read")
+    ("log,l"       , "Enable logging")
     ;
 
   // the positional argument is input-file
@@ -78,7 +79,8 @@ int main( int argc, char **argv )
     if ( !cin )
       break;
 
-    DepthFirstSearch<ALUGraph> dfs( ug, v_id, true, cout );
+    bool doLogging = vm.count("log");
+    DepthFirstSearch<ALUGraph> dfs( ug, v_id, doLogging, cout );
 
     cout << "There are " << dfs.count() << " vertices connected to " << v_id << endl;
   }
